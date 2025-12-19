@@ -1,66 +1,67 @@
+import SectionTitle from "../components/SectionTitle";
+import { motion } from "framer-motion";
 
 const projects = [
-  {
-    title: "Portfolio Website",
-    description: "Personal portfolio built with React showcasing projects and skills.",
-    tech: ["React", "Vite", "Tailwind"],
-    github: "https://github.com/USERNAME/portfolio",
-    live: "https://your-portfolio.netlify.app",
-  },
-  {
-    title: "Todo App",
-    description: "CRUD todo app with local storage and responsive UI.",
-    tech: ["React", "CSS"],
-    github: "https://github.com/USERNAME/todo-app",
-    live: "https://todo-app.vercel.app",
-  },
-  {
-    title: "Landing Page",
-    description: "Modern landing page with responsive layout and animations.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/USERNAME/landing-page",
-    live: "https://landing-page.netlify.app",
-  },
-]
+  { title: "Weather App", demo: "#", github: "#" },
+  { title: "Seda App", demo: "#", github: "#" },
+  { title: "Computer-Store", demo: "#", github: "#" },
+  { title: "Blog Platform", demo: "#", github: "#" },
+  { title: "E-commerce Site", demo: "#", github: "#" },
+  { title: "Portfolio Website", demo: "#", github: "#" },
+];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6 max-w-6xl mx-auto">
-      <h2 className="text-3xl font-bold mb-12 text-center">Projects</h2>
+    <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
+      <SectionTitle title="Projects" subtitle="Some of my recent work" />
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div
+        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.15 } },
+        }}
+      >
         {projects.map((project, index) => (
-          <div key={index} className="bg-slate-800 rounded-2xl p-6 shadow-lg flex flex-col">
-            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-            <p className="text-gray-400 mb-4">{project.description}</p>
-
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.tech.map((t, i) => (
-                <span key={i} className="text-sm bg-slate-700 px-3 py-1 rounded-full">
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-auto flex gap-4">
+          <motion.div
+            key={index}
+            whileHover={{ scale: 1.05 }}
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            className="glass p-6 rounded-2xl transition hover:-translate-y-2 hover:shadow-xl glow cursor-pointer"
+          >
+            <h3 className="text-xl font-semibold mb-3 text-sky-400">
+              {project.title}
+            </h3>
+            <p className="text-zinc-400 text-sm mb-4">
+              Click links to view project
+            </p>
+            <div className="flex justify-center gap-4 text-sm">
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-400 hover:underline"
+              >
+                Live
+              </a>
               <a
                 href={project.github}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-sky-400 hover:underline"
               >
                 GitHub
               </a>
-              <a
-                href={project.live}
-                target="_blank"
-                className="text-sky-400 hover:underline"
-              >
-                Live Demo
-              </a>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
-  )
+  );
 }
