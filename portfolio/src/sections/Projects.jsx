@@ -1,67 +1,102 @@
 import SectionTitle from "../components/SectionTitle";
-import { motion } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const projects = [
-  { title: "Weather App", demo: "#", github: "#" },
-  { title: "Seda App", demo: "#", github: "#" },
-  { title: "Computer-Store", demo: "#", github: "#" },
-  { title: "Blog Platform", demo: "#", github: "#" },
-  { title: "E-commerce Site", demo: "#", github: "#" },
-  { title: "Portfolio Website", demo: "#", github: "#" },
+  {
+    name: "Afghan Proverbs API",
+    description:
+      "A RESTful API that provides Afghan proverbs with meanings, designed for educational and cultural applications.",
+    tech: ["Node.js", "Express", "MongoDB"],
+    github: "https://github.com/FSRahimi/Afghan-Proverbs-API",
+    demo: "#",
+  },
+  {
+    name: "Portfolio Website",
+    description:
+      "A modern and responsive personal portfolio showcasing my projects, skills, and experience.",
+    tech: ["React", "Tailwind CSS"],
+    github: "https://github.com/FSRahimi/PortfolioWebSite",
+    demo: "#",
+  },
+  {
+    name: "Vue.js Bug Tracker",
+    description:
+      "A bug tracking application for reporting and managing issues in Vue.js projects.",
+    tech: ["Vue.js", "JavaScript", "HTML", "CSS"],
+    github: "#",
+    demo: "#",
+  },
+  {
+    name: "Frontend Practice Project",
+    description:
+      "A frontend-focused project built to practice UI design, responsiveness, and clean code structure.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "#",
+    demo: "#",
+  },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="max-w-6xl mx-auto px-6 py-24">
-      <SectionTitle title="Projects" subtitle="Some of my recent work" />
+    <section
+      id="projects"
+      className="max-w-6xl mx-auto px-6 py-24 overflow-hidden"
+    >
+      <SectionTitle
+        title="Projects"
+        subtitle="Some of my recent work"
+      />
 
-      <motion.div
-        className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={{
-          hidden: {},
-          visible: { transition: { staggerChildren: 0.15 } },
-        }}
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            className="glass p-6 rounded-2xl transition hover:-translate-y-2 hover:shadow-xl glow cursor-pointer"
+      <div className="grid md:grid-cols-2 gap-8">
+        {projects.map((p, i) => (
+          <div
+            key={i}
+            className="glass rounded-3xl p-8 backdrop-blur-md hover:-translate-y-1 hover:shadow-xl transition"
           >
-            <h3 className="text-xl font-semibold mb-3 text-sky-400">
-              {project.title}
-            </h3>
-            <p className="text-zinc-400 text-sm mb-4">
-              Click links to view project
+            {/* Project Title Badge */}
+            <span className="inline-block mb-4 px-4 py-1 text-sm font-medium rounded-full bg-sky-400/10 text-sky-400">
+              {p.name}
+            </span>
+
+            <p className="text-zinc-300 mb-4">
+              {p.description}
             </p>
-            <div className="flex justify-center gap-4 text-sm">
+
+            {/* Tech stack */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {p.tech.map((t, index) => (
+                <span
+                  key={index}
+                  className="text-xs px-3 py-1 rounded-full bg-purple-400/10 text-purple-400"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-4">
               <a
-                href={project.demo}
+                href={p.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sky-400 hover:underline"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 transition text-sm"
               >
-                Live
+                <FaGithub /> GitHub
               </a>
+
               <a
-                href={project.github}
+                href={p.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sky-400 hover:underline"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-400 text-black hover:bg-sky-500 transition text-sm"
               >
-                GitHub
+                <FaExternalLinkAlt /> Demo
               </a>
             </div>
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -28,3 +28,10 @@ scroll-behavior: smooth;
 .glow:hover {
   box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* prevent horizontal scroll */
+  background-color: #000; /* optional: match your site background */
+}
