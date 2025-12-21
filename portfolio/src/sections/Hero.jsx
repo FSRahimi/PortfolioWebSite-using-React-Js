@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import profileImg from "../assets/profile.jpg"; 
+import profileImg from "../assets/profile.jpg";
 
-export default function Hero() {
+
+export default function Hero() { 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
       

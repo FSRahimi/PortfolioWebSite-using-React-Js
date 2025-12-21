@@ -1,6 +1,7 @@
-import CV from "../assets/Fatema_Rahimi_CV.pdf";
-import CoverLetter from "../assets/Fatema_Rahimi_CoverLetter.pdf";
 
+import CV from "../assets/Fatema_Rahimi_CV.pdf?url";
+
+import CoverLetter from "../assets/Fatema_CoverLetter.pdf"
 
 
 export default function About() {
